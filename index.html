@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vinкод — запчасти и аксессуары для электромобилей в Алматы</title>
+  <meta name="description" content="Vinкод — магазин автозапчастей и аксессуаров для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Deepal, Honda и других электрокаров и гибридов. Алматы, ул. Хмельницкого 38. Доставка по РК и СНГ.">
+  <meta property="og:title" content="Vinкод — запчасти для электромобилей в Алматы">
+  <meta property="og:description" content="Оригинальные запчасти и аксессуары для Lixiang, Zeekr, BYD, Voyah и других электрокаров. В наличии и под заказ из Китая.">
+  <meta name="theme-color" content="#0b0f0d">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ВЕРХНЯЯ ПОЛОСА -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__left">
+      <span class="dot-live"></span> Ежедневно 10:00 – 20:00
+      <span class="sep">|</span>
+      <a href="#map">ул. Хмельницкого, 38</a>
+    </div>
+    <div class="topbar__center">⚡ Доставка по Казахстану и СНГ · Под заказ из Китая от 8 дней</div>
+    <div class="topbar__right">
+      <a href="tel:+77005278490">+7 700 527 84 90</a>
+    </div>
+  </div>
+</div>
+
+<!-- ШАПКА -->
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="Vinкод — на главную">
+      <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 2 43 13v22L24 46 5 35V13z" fill="none" stroke="currentColor" stroke-width="3"/>
+        <path d="M13 27c1-5 4-8 11-8s10 3 11 8" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="17" cy="30" r="3" fill="var(--accent)"/><circle cx="31" cy="30" r="3" fill="var(--accent)"/>
+        <path d="M25 9l-5 9h5l-2 7 7-10h-5l2-6z" fill="var(--accent)"/>
+      </svg>
+      <span class="logo__text"><span>VIN<b>КОД</b></span><small>auto parts</small></span>
+    </a>
+
+    <form class="search" id="searchForm" role="search">
+      <input type="search" id="searchInput" placeholder="Поиск по названию, марке или VIN…" aria-label="Поиск запчастей">
+      <button type="submit" aria-label="Найти">
+        <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </form>
+
+    <div class="header__actions">
+      <a class="icon-btn hide-sm" href="https://wa.me/77005278490" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.6-.3z"/></svg>
+      </a>
+      <button class="icon-btn cart-btn" id="cartOpen" aria-label="Корзина">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 4h2l2.4 11h11L21 7H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="9" cy="19.5" r="1.5" fill="currentColor"/><circle cx="17" cy="19.5" r="1.5" fill="currentColor"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#catalog" data-filter="all">Каталог</a>
+      <a href="#categories">Категории</a>
+      <a href="#services">Услуги</a>
+      <a href="#brands">Марки</a>
+      <a href="#about">О нас</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#map">Контакты</a>
+      <a class="nav__kaspi" href="https://kaspi.kz/shop/info/merchant/15751524/review/" target="_blank" rel="noopener">Мы на Kaspi</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO / ПОДБОР -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <!-- ФОТО: замените images/hero.jpg на фото магазина / электрокара -->
+    <img src="images/hero.jpg" alt="" onerror="this.remove()">
+  </div>
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="badge">⚡ Запчасти для электромобилей и гибридов</span>
+      <h1>Подберём запчасть<br>для вашего <span class="grad">электрокара</span></h1>
+      <p class="hero__lead">Оригинальные запчасти и аксессуары для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Deepal, Honda и других. Большинство — в наличии на складе в Алматы, остальное привезём из Китая.</p>
+      <ul class="hero__facts">
+        <li><b>4.9 ★</b><span>рейтинг в 2ГИС</span></li>
+        <li><b>8–25 дн.</b><span>доставка под заказ</span></li>
+        <li><b>РК и СНГ</b><span>отправка по всем городам</span></li>
+      </ul>
+    </div>
+
+    <form class="picker" id="picker">
+      <div class="picker__head">
+        <h2>Подбор запчасти</h2>
+        <p>Укажите авто — менеджер ответит в WhatsApp в течение 15 минут</p>
+      </div>
+      <label class="field">
+        <span class="field__num">1</span>
+        <select id="pBrand" required>
+          <option value="">Марка автомобиля</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field__num">2</span>
+        <select id="pModel" required disabled>
+          <option value="">Модель</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field__num">3</span>
+        <input id="pVin" type="text" maxlength="17" placeholder="VIN-код (необязательно)">
+      </label>
+      <label class="field">
+        <span class="field__num">4</span>
+        <input id="pPart" type="text" placeholder="Какая запчасть нужна?">
+      </label>
+      <div class="picker__btns">
+        <button type="button" class="btn btn--ghost" id="pShow">Показать в каталоге</button>
+        <button type="submit" class="btn btn--accent">Отправить запрос</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="perks">
+  <div class="container perks__grid">
+    <div class="perk"><div class="perk__ic">📦</div><div><b>Склад в Алматы</b><span>Большинство позиций в наличии</span></div></div>
+    <div class="perk"><div class="perk__ic">🇨🇳</div><div><b>Под заказ из Китая</b><span>От 8 до 25 дней, ускоренно — до 10</span></div></div>
+    <div class="perk"><div class="perk__ic">✅</div><div><b>Оригинал и качество</b><span>Проверяем совместимость по VIN</span></div></div>
+    <div class="perk"><div class="perk__ic">💳</div><div><b>Kaspi, карта, наличные</b><span>Удобная оплата и рассрочка</span></div></div>
+  </div>
+</section>
+
+<!-- КАТЕГОРИИ -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="h2">Категории товаров</h2>
+      <div class="arrows">
+        <button class="arrow" data-scroll="#catTrack" data-dir="-1" aria-label="Назад">‹</button>
+        <button class="arrow" data-scroll="#catTrack" data-dir="1" aria-label="Вперёд">›</button>
+      </div>
+    </div>
+    <div class="cat-track" id="catTrack"></div>
+  </div>
+</section>
+
+<!-- КАТАЛОГ -->
+<section class="section section--alt" id="catalog">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="h2">Каталог</h2>
+        <p class="muted" id="catalogInfo">Товары в наличии и под заказ</p>
+      </div>
+      <div class="chips" id="brandChips"></div>
+    </div>
+    <div class="products" id="products"></div>
+    <div class="empty" id="emptyState" hidden>
+      <p>По вашему запросу ничего не найдено в витрине — но, скорее всего, мы это привезём.</p>
+      <a class="btn btn--accent" id="emptyAsk" href="https://wa.me/77005278490" target="_blank" rel="noopener">Спросить у менеджера</a>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕДЛОЖЕНИЯ -->
+<section class="section" id="offers">
+  <div class="container offers">
+    <article class="offer offer--a">
+      <div class="offer__img">
+        <!-- ФОТО: images/offer-to.jpg -->
+        <img src="images/offer-to.jpg" alt="Техобслуживание электромобиля" onerror="this.remove()">
+      </div>
+      <div class="offer__body">
+        <span class="offer__tag">Комплекты ТО</span>
+        <h3>Всё для планового ТО<br>Lixiang и Zeekr</h3>
+        <p>Свечи, фильтры, масла и жидкости — соберём комплект под ваш пробег.</p>
+        <a href="#catalog" class="btn btn--accent" data-cat-link="to">Смотреть</a>
+      </div>
+    </article>
+    <article class="offer offer--b">
+      <div class="offer__img">
+        <!-- ФОТО: images/offer-acc.jpg -->
+        <img src="images/offer-acc.jpg" alt="Аксессуары для салона" onerror="this.remove()">
+      </div>
+      <div class="offer__body">
+        <span class="offer__tag">Аксессуары</span>
+        <h3>Защита экранов,<br>коврики, чехлы</h3>
+        <p>Глянцевые, матовые и антибликовые стёкла для всех мониторов салона.</p>
+        <a href="#catalog" class="btn btn--light" data-cat-link="acc">Подобрать</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- УСЛУГИ -->
+<section class="section section--dark" id="services">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="h2">Чем мы занимаемся</h2>
+        <p class="muted">Полный цикл: от подбора детали до установки</p>
+      </div>
+    </div>
+    <div class="services">
+      <div class="service">
+        <span class="service__n">01</span>
+        <h3>Продажа запчастей</h3>
+        <p>Кузовные детали, подвеска, тормоза, оптика, электрика и расходники для электромобилей и гибридов.</p>
+      </div>
+      <div class="service">
+        <span class="service__n">02</span>
+        <h3>Заказ из Китая</h3>
+        <p>Привезём любую деталь напрямую от поставщиков. Стандарт — 8–25 дней, ускоренная доставка — до 10 дней.</p>
+      </div>
+      <div class="service">
+        <span class="service__n">03</span>
+        <h3>ТО и обслуживание</h3>
+        <p>Плановое техобслуживание, замена свечей, фильтров и жидкостей. Подбор комплектов по VIN.</p>
+      </div>
+      <div class="service">
+        <span class="service__n">04</span>
+        <h3>Ремонт</h3>
+        <p>Диагностика и ремонт электрокаров — запишитесь через менеджера в WhatsApp.</p>
+      </div>
+      <div class="service">
+        <span class="service__n">05</span>
+        <h3>Аксессуары и тюнинг</h3>
+        <p>Защитные стёкла для экранов, коврики, органайзеры, зарядные устройства и комфорт-опции.</p>
+      </div>
+      <div class="service">
+        <span class="service__n">06</span>
+        <h3>Доставка по РК и СНГ</h3>
+        <p>Отправляем в любой город Казахстана и стран СНГ транспортными компаниями.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МАРКИ -->
+<section class="section" id="brands">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="h2">Работаем с марками</h2>
+    </div>
+    <div class="brands" id="brandGrid"></div>
+  </div>
+</section>
+
+<!-- О НАС -->
+<section class="section section--alt" id="about">
+  <div class="container about">
+    <div class="about__photos">
+      <!-- ФОТО: images/about-1.jpg, images/about-2.jpg — фото магазина и склада -->
+      <div class="photo photo--lg"><img src="images/about-1.jpg" alt="Магазин Vinкод" onerror="this.remove()"><span>Фото магазина</span></div>
+      <div class="photo"><img src="images/about-2.jpg" alt="Склад Vinкод" onerror="this.remove()"><span>Фото склада</span></div>
+      <div class="photo"><img src="images/about-3.jpg" alt="Команда Vinкод" onerror="this.remove()"><span>Фото команды</span></div>
+    </div>
+    <div class="about__text">
+      <span class="badge">О компании</span>
+      <h2 class="h2">Зарядим ваш электрокар по максимуму ⚡</h2>
+      <p>Vinкод — специализированный магазин запчастей и аксессуаров для электромобилей и гибридов в Алматы. Мы знаем Li Auto, Zeekr, BYD, Voyah и другие китайские электрокары изнутри и помогаем владельцам быстро найти нужную деталь — без переплат и долгих поисков.</p>
+      <p>Подбираем запчасти по VIN-коду, держим ходовые позиции на складе и напрямую работаем с поставщиками в Китае.</p>
+      <div class="about__stats">
+        <div><b>2 100+</b><span>подписчиков в Instagram</span></div>
+        <div><b>4.9</b><span>оценка клиентов в 2ГИС</span></div>
+        <div><b>10+</b><span>марок электрокаров</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="h2">Отзывы клиентов</h2>
+        <p class="muted">4.9 ★ на основе 50 оценок в 2ГИС</p>
+      </div>
+      <a class="btn btn--ghost" href="https://2gis.kz/almaty/firm/70000001094351681/tab/reviews" target="_blank" rel="noopener">Все отзывы в 2ГИС</a>
+    </div>
+    <div class="reviews">
+      <!-- Замените тексты на реальные отзывы клиентов -->
+      <blockquote class="review"><div class="stars">★★★★★</div><p>Место для отзыва клиента. Скопируйте сюда реальный отзыв из 2ГИС или Instagram.</p><footer>Имя клиента · Li Auto L7</footer></blockquote>
+      <blockquote class="review"><div class="stars">★★★★★</div><p>Место для отзыва клиента. Скопируйте сюда реальный отзыв из 2ГИС или Instagram.</p><footer>Имя клиента · Zeekr 001</footer></blockquote>
+      <blockquote class="review"><div class="stars">★★★★★</div><p>Место для отзыва клиента. Скопируйте сюда реальный отзыв из 2ГИС или Instagram.</p><footer>Имя клиента · BYD Song Plus</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt" id="faq">
+  <div class="container faq">
+    <h2 class="h2">Частые вопросы</h2>
+    <details open>
+      <summary>Все запчасти в наличии?</summary>
+      <p>Большинство запчастей есть на нашем складе в Алматы. Также работаем под заказ — доставка в среднем от 8 до 25 дней.</p>
+    </details>
+    <details>
+      <summary>Возможна ли ускоренная доставка из Китая?</summary>
+      <p>Да, за дополнительную оплату — срок до 10 дней. Ускоренная доставка доступна не для всех видов запчастей, уточняйте у менеджера.</p>
+    </details>
+    <details>
+      <summary>Как подобрать правильную деталь?</summary>
+      <p>Отправьте менеджеру VIN-код автомобиля — мы проверим совместимость и предложим оригинал или качественный аналог.</p>
+    </details>
+    <details>
+      <summary>Отправляете в другие города?</summary>
+      <p>Да, доставляем по всему Казахстану и в страны СНГ.</p>
+    </details>
+    <details>
+      <summary>Какие способы оплаты?</summary>
+      <p>Kaspi (в том числе через наш Kaspi-магазин), банковская карта, наличные в магазине.</p>
+    </details>
+  </div>
+</section>
+
+<!-- КАРТА 2ГИС -->
+<section class="section" id="map">
+  <div class="container contacts">
+    <div class="contacts__info">
+      <h2 class="h2">Как нас найти</h2>
+      <div class="contact">
+        <span class="contact__ic">📍</span>
+        <div><b>г. Алматы, ул. Хмельницкого, 38</b><span>Турксибский район, 1 этаж</span>
+          <a href="https://2gis.kz/almaty/firm/70000001094351681" target="_blank" rel="noopener">Открыть в 2ГИС →</a></div>
+      </div>
+      <div class="contact">
+        <span class="contact__ic">📍</span>
+        <div><b>Второй адрес: Бурхан, 32/2</b>
+          <a href="https://2gis.kz/almaty/search/%D0%91%D1%83%D1%80%D1%85%D0%B0%D0%BD%2032%2F2" target="_blank" rel="noopener">Открыть в 2ГИС →</a></div>
+      </div>
+      <div class="contact">
+        <span class="contact__ic">🕙</span>
+        <div><b>Ежедневно с 10:00 до 20:00</b><span>Без выходных</span></div>
+      </div>
+      <div class="contact">
+        <span class="contact__ic">📞</span>
+        <div>
+          <a class="contact__phone" href="tel:+77005278490">+7 700 527 84 90</a><span>Менеджер 1</span>
+          <a class="contact__phone" href="tel:+77089031461">+7 708 903 14 61</a><span>Менеджер 2</span>
+        </div>
+      </div>
+      <div class="contacts__btns">
+        <a class="btn btn--accent" href="https://wa.me/77005278490" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn--ghost" href="https://instagram.com/vin.kod.kz/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn--ghost" href="https://2gis.kz/almaty/directions/points/%7C76.967658%2C43.322011%3B70000001094351681" target="_blank" rel="noopener">Маршрут</a>
+      </div>
+    </div>
+    <div class="contacts__map">
+      <iframe
+        title="Vinкод на карте 2ГИС"
+        src="https://widgets.2gis.com/widget?type=firmsonmap&amp;options=%7B%22pos%22%3A%7B%22lat%22%3A43.322011%2C%22lon%22%3A76.967658%2C%22zoom%22%3A16%7D%2C%22opt%22%3A%7B%22city%22%3A%22almaty%22%7D%2C%22org%22%3A%2270000001094351681%22%7D"></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ПОДВАЛ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <a href="#top" class="logo logo--footer"><span class="logo__text"><span>VIN<b>КОД</b></span><small>auto parts</small></span></a>
+      <p class="muted">Магазин автозапчастей и аксессуаров для Lixiang, Zeekr, BYD, Honda, Voyah, Leopard, Deepal и других электрокаров и гибридов.</p>
+    </div>
+    <div>
+      <h4>Покупателям</h4>
+      <a href="#catalog">Каталог</a>
+      <a href="#faq">Доставка и оплата</a>
+      <a href="#faq">Частые вопросы</a>
+      <a href="https://kaspi.kz/shop/info/merchant/15751524/review/" target="_blank" rel="noopener">Kaspi магазин</a>
+    </div>
+    <div>
+      <h4>Компания</h4>
+      <a href="#about">О нас</a>
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#map">Контакты</a>
+    </div>
+    <div>
+      <h4>Связь</h4>
+      <a href="tel:+77005278490">+7 700 527 84 90</a>
+      <a href="tel:+77089031461">+7 708 903 14 61</a>
+      <a href="https://instagram.com/vin.kod.kz/" target="_blank" rel="noopener">@vin.kod.kz</a>
+      <span class="muted">Алматы, ул. Хмельницкого, 38</span>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© <span id="year"></span> Vinкод. Все права защищены.</span>
+    <span>Цены на сайте носят информационный характер, уточняйте у менеджера.</span>
+  </div>
+</footer>
+
+<!-- Плавающая кнопка WhatsApp -->
+<a class="wa-float" href="https://wa.me/77005278490" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.6-.3z"/></svg>
+</a>
+
+<!-- КОРЗИНА -->
+<div class="drawer-overlay" id="overlay" hidden></div>
+<aside class="drawer" id="cart" aria-label="Корзина" aria-hidden="true">
+  <div class="drawer__head">
+    <h3>Корзина</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="drawer__body" id="cartItems"></div>
+  <form class="drawer__foot" id="orderForm">
+    <div class="total"><span>Итого</span><b id="cartTotal">0 ₸</b></div>
+    <input type="text" id="oName" placeholder="Ваше имя" required>
+    <input type="tel" id="oPhone" placeholder="Телефон +7" required>
+    <input type="text" id="oCar" placeholder="Авто / VIN (по желанию)">
+    <select id="oDelivery">
+      <option>Самовывоз — ул. Хмельницкого, 38</option>
+      <option>Доставка по Алматы</option>
+      <option>Доставка по Казахстану / СНГ</option>
+    </select>
+    <button type="submit" class="btn btn--accent btn--block">Оформить заказ в WhatsApp</button>
+    <p class="drawer__note">Менеджер подтвердит наличие и сумму заказа</p>
+  </form>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
