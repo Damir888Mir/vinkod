@@ -21,7 +21,7 @@
 <div class="topbar">
   <div class="container topbar__inner">
     <div class="topbar__left">
-      <span class="dot-live"></span> Ежедневно 10:00 – 20:00
+      <span class="dot-live" id="openDot"></span> <span id="openNow">Ежедневно 10:00 – 20:00</span>
       <span class="sep">|</span>
       <a href="#map">ул. Хмельницкого, 38</a>
     </div>
@@ -175,7 +175,21 @@
       </div>
       <div class="chips" id="brandChips"></div>
     </div>
+    <div class="toolbar">
+      <label class="switch"><input type="checkbox" id="onlyIn"><span class="switch__ui"></span>Только в наличии</label>
+      <label class="sort">
+        <span>Сортировка</span>
+        <select id="sortSel">
+          <option value="def">по умолчанию</option>
+          <option value="in">сначала в наличии</option>
+          <option value="asc">сначала дешевле</option>
+          <option value="desc">сначала дороже</option>
+          <option value="az">по названию</option>
+        </select>
+      </label>
+    </div>
     <div class="products" id="products"></div>
+    <div class="more"><button class="btn btn--ghost" id="moreBtn" hidden>Показать ещё</button></div>
     <div class="empty" id="emptyState" hidden>
       <p>По вашему запросу ничего не найдено в витрине — но, скорее всего, мы это привезём.</p>
       <a class="btn btn--accent" id="emptyAsk" href="https://wa.me/77005278490" target="_blank" rel="noopener">Спросить у менеджера</a>
@@ -309,6 +323,46 @@
   </div>
 </section>
 
+<!-- КАК ЗАКАЗАТЬ / ДОСТАВКА / ОПЛАТА -->
+<section class="section section--dark" id="delivery">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="h2">Как заказать запчасть</h2>
+        <p class="muted">4 простых шага — от запроса до получения</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li class="step"><span class="step__n">01</span><b>Запрос</b><p>Выберите товар на сайте или пришлите марку, модель и VIN-код в WhatsApp.</p></li>
+      <li class="step"><span class="step__n">02</span><b>Подбор по VIN</b><p>Менеджер проверит совместимость и назовёт цену и срок — в наличии или под заказ.</p></li>
+      <li class="step"><span class="step__n">03</span><b>Оплата</b><p>Kaspi, банковская карта или наличные в магазине — как вам удобнее.</p></li>
+      <li class="step"><span class="step__n">04</span><b>Получение</b><p>Самовывоз с Хмельницкого, 38, доставка по Алматы, Казахстану и СНГ.</p></li>
+    </ol>
+    <div class="deliv">
+      <div class="deliv__card">
+        <div class="deliv__ic">🏬</div>
+        <b>Самовывоз</b>
+        <p>Алматы, ул. Хмельницкого, 38. Ежедневно 10:00–20:00 — товар в наличии забираете сразу.</p>
+      </div>
+      <div class="deliv__card">
+        <div class="deliv__ic">🛵</div>
+        <b>По Алматы</b>
+        <p>Курьером в удобное время. Стоимость зависит от района — менеджер сообщит при заказе.</p>
+      </div>
+      <div class="deliv__card">
+        <div class="deliv__ic">🚚</div>
+        <b>Казахстан и СНГ</b>
+        <p>Отправляем транспортными компаниями во все города. Под заказ из Китая — 8–25 дней, ускоренно до 10.</p>
+      </div>
+      <div class="deliv__card">
+        <div class="deliv__ic">💳</div>
+        <b>Оплата</b>
+        <p>Kaspi (в т.ч. через наш Kaspi-магазин), карта, наличные. На Kaspi доступна рассрочка.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section section--alt" id="faq">
   <div class="container faq">
@@ -352,7 +406,7 @@
         <div class="contact__ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div><b>Ежедневно с 10:00 до 20:00</b><span>Без выходных</span></div>
+        <div><b>Ежедневно с 10:00 до 20:00</b><span>Без выходных · <em class="open-badge" id="openBadge"></em></span></div>
       </div>
       <div class="contact">
         <div class="contact__ic" aria-hidden="true">
@@ -389,7 +443,7 @@
     <div>
       <h4>Покупателям</h4>
       <a href="#catalog">Каталог</a>
-      <a href="#faq">Доставка и оплата</a>
+      <a href="#delivery">Доставка и оплата</a>
       <a href="#faq">Частые вопросы</a>
       <a href="https://kaspi.kz/shop/info/merchant/15751524/review/" target="_blank" rel="noopener" class="footer__kaspi"><img class="kaspi-logo" src="images/kaspi.png" alt="" width="22" height="22" loading="lazy"> Kaspi магазин</a>
     </div>
@@ -420,6 +474,15 @@
 </a>
 
 <!-- КОРЗИНА -->
+<!-- КАРТОЧКА ТОВАРА -->
+<div class="modal" id="pModal" hidden>
+  <div class="modal__bg" data-mclose></div>
+  <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="pmName">
+    <button class="modal__x" data-mclose aria-label="Закрыть">×</button>
+    <div id="pmBody"></div>
+  </div>
+</div>
+
 <div class="drawer-overlay" id="overlay" hidden></div>
 <aside class="drawer" id="cart" aria-label="Корзина" aria-hidden="true">
   <div class="drawer__head">
