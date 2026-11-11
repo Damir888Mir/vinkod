@@ -309,6 +309,82 @@
     $$(".reveal:not(.is-in)").forEach((el) => io.observe(el));
   }
 
+  /* ---------- Эффекты ---------- */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  function initEffects() {
+    // Бегущая строка марок (список дублируется для бесшовной прокрутки)
+    const mq = $("#marquee");
+    if (mq) {
+      const names = Object.keys(window.VK_BRANDS || {}).map((b) => `<span>${b}</span>`).join("");
+      mq.innerHTML = names + names;
+    }
+
+    // Полоса прокрутки и тень шапки
+    const bar = $("#progress"), header = $(".header");
+    let ticking = false;
+    const onScroll = () => {
+      const h = document.documentElement;
+      const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+      if (bar) bar.style.transform = `scaleX(${p})`;
+      if (header) header.classList.toggle("is-scrolled", h.scrollTop > 10);
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+
+    // Каскадное появление карточек одной сетки
+    $$(".reveal").forEach((el) => {
+      const sibs = [...el.parentElement.children].filter((c) => c.classList.contains("reveal"));
+      const i = sibs.indexOf(el);
+      if (i > 0) el.style.transitionDelay = `${Math.min(i, 8) * 70}ms`;
+    });
+
+    // Счётчики в hero
+    if (!reduceMotion) $$("[data-count]").forEach((el) => {
+      const to = parseFloat(el.dataset.count), dec = Number(el.dataset.dec || 0), t0 = performance.now() + 500, dur = 1600;
+      el.textContent = (0).toFixed(dec);
+      const step = (t) => {
+        const k = Math.min(1, Math.max(0, (t - t0) / dur)), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = (to * e).toFixed(dec);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+
+    if (reduceMotion || !finePointer) return;
+
+    // Прожектор за курсором в hero
+    const hero = $(".hero");
+    hero.addEventListener("pointermove", (e) => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      hero.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+
+    // 3D-наклон карточек за курсором
+    const SEL = ".product, .cat, .service, .brand, .offer, .review";
+    let cur = null;
+    const release = () => { if (cur) { cur.style.transform = ""; cur.classList.remove("is-tilting"); cur = null; } };
+    document.addEventListener("pointermove", (e) => {
+      const card = e.target.closest && e.target.closest(SEL);
+      if (cur && cur !== card) release();
+      if (!card) return;
+      card.classList.add("tilt");
+      cur = card;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      const max = card.matches(".brand, .cat") ? 10 : 6;
+      card.style.transition = "transform .12s ease-out, box-shadow .25s, border-color .25s, opacity .6s";
+      card.style.transform = `perspective(900px) rotateX(${(0.5 - y) * max}deg) rotateY(${(x - 0.5) * max}deg) translateY(-4px)`;
+      card.style.setProperty("--gx", `${x * 100}%`);
+      card.style.setProperty("--gy", `${y * 100}%`);
+      card.classList.add("is-tilting");
+    });
+    document.documentElement.addEventListener("pointerleave", release);
+  }
+
   /* Загрузка товаров из МойСклад (когда будет подключён API /api/products) */
   async function loadRemoteProducts() {
     try {
@@ -331,5 +407,6 @@
   initCart();
   renderCart();
   initMisc();
+  initEffects();
   loadRemoteProducts();
 })();

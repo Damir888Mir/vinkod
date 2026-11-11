@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <!-- ВЕРХНЯЯ ПОЛОСА -->
 <div class="topbar">
@@ -78,6 +79,8 @@
 
 <!-- HERO / ПОДБОР -->
 <section class="hero">
+  <div class="hero__orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="hero__spot" aria-hidden="true"></div>
   <div class="hero__bg" aria-hidden="true">
     <!-- ФОТО: замените images/hero.jpg на фото магазина / электрокара -->
     <img src="images/hero.jpg" alt="" onerror="this.remove()">
@@ -88,8 +91,8 @@
       <h1>Подберём запчасть<br>для вашего <span class="grad">электрокара</span></h1>
       <p class="hero__lead">Оригинальные запчасти и аксессуары для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Changan Deepal, Honda и других. Большинство — в наличии на складе в Алматы, остальное привезём из Китая.</p>
       <ul class="hero__facts">
-        <li><b>4.9 ★</b><span>рейтинг в 2ГИС</span></li>
-        <li><b>8–25 дн.</b><span>доставка под заказ</span></li>
+        <li><b><span data-count="4.9" data-dec="1">4.9</span> ★</b><span>рейтинг в 2ГИС</span></li>
+        <li><b>8–<span data-count="25">25</span> дн.</b><span>доставка под заказ</span></li>
         <li><b>РК и СНГ</b><span>отправка по всем городам</span></li>
       </ul>
     </div>
@@ -144,6 +147,9 @@
     <div class="perk"><div class="perk__ic">💳</div><div><b>Kaspi, карта, наличные</b><span>Удобная оплата и рассрочка</span></div></div>
   </div>
 </section>
+
+<!-- БЕГУЩАЯ СТРОКА МАРОК -->
+<div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
 
 <!-- КАТЕГОРИИ -->
 <section class="section" id="categories">
