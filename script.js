@@ -7,6 +7,7 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   const BRANDS = window.VK_BRANDS || {};
+  const OTHER = window.VK_OTHER || "Другая";
   const CATS = window.VK_CATEGORIES || [];
   const WA = (window.VK_CONTACT && window.VK_CONTACT.whatsapp) || "77005278490";
   let PRODUCTS = window.VK_PRODUCTS || [];
@@ -64,11 +65,12 @@
   }
 
   function renderBrandGrid() {
-    $("#brandGrid").innerHTML = Object.keys(BRANDS).filter((b) => b !== "Другая марка").map((b) => {
+    $("#brandGrid").innerHTML = Object.keys(BRANDS).map((b) => {
       const short = b.replace(/\s*\(.*\)/, "");
       const sub = (b.match(/\((.*)\)/) || [])[1] || BRANDS[b].slice(0, 3).join(" · ");
       return `<button class="brand" data-brand="${esc(b)}">${esc(short)}<small>${esc(sub)}</small></button>`;
-    }).join("");
+    }).join("") +
+      `<button class="brand brand--other" data-brand="${OTHER}">${OTHER}<small>Нет вашей марки? Напишите её</small></button>`;
     $$(".brand").forEach((el) => el.addEventListener("click", () => {
       $("#pBrand").value = el.dataset.brand;
       $("#pBrand").dispatchEvent(new Event("change"));
@@ -133,16 +135,50 @@
   /* ---------- Подбор ---------- */
   function initPicker() {
     const brandSel = $("#pBrand"), modelSel = $("#pModel");
-    brandSel.innerHTML += Object.keys(BRANDS).map((b) => `<option>${esc(b)}</option>`).join("");
+    const modelWrap = modelSel.closest("label");
+    const brandOtherWrap = $("#pBrandOtherWrap"), brandOther = $("#pBrandOther");
+    const modelOtherWrap = $("#pModelOtherWrap"), modelOther = $("#pModelOther");
+
+    function toggle(wrap, input, on) {
+      wrap.hidden = !on;
+      input.required = on;
+      if (!on) { input.value = ""; wrap.classList.remove("is-error"); }
+    }
+    function syncModelOther() {
+      const brandIsOther = brandSel.value === OTHER;
+      toggle(modelOtherWrap, modelOther, brandIsOther || modelSel.value === OTHER);
+      modelOther.placeholder = brandIsOther ? "Напишите модель автомобиля" : "Напишите вашу модель";
+    }
+
+    brandSel.innerHTML += Object.keys(BRANDS).map((b) => `<option>${esc(b)}</option>`).join("") +
+      `<option value="${OTHER}">${OTHER} (нет в списке)</option>`;
+
     brandSel.addEventListener("change", () => {
+      const brandIsOther = brandSel.value === OTHER;
       const models = BRANDS[brandSel.value] || [];
-      modelSel.innerHTML = `<option value="">Модель</option>` + models.map((m) => `<option>${esc(m)}</option>`).join("");
+      modelSel.innerHTML = `<option value="">Модель</option>` +
+        models.map((m) => `<option>${esc(m)}</option>`).join("") +
+        (models.length ? `<option value="${OTHER}">${OTHER} (нет в списке)</option>` : "");
       modelSel.disabled = !models.length;
+      modelSel.required = !brandIsOther;
+      modelWrap.hidden = brandIsOther;
+      toggle(brandOtherWrap, brandOther, brandIsOther);
+      syncModelOther();
+      if (brandIsOther) brandOther.focus();
     });
+    modelSel.addEventListener("change", () => {
+      syncModelOther();
+      if (modelSel.value === OTHER) modelOther.focus();
+    });
+    [brandOther, modelOther].forEach((inp) => {
+      inp.addEventListener("invalid", () => inp.closest("label").classList.add("is-error"));
+      inp.addEventListener("input", () => inp.closest("label").classList.remove("is-error"));
+    });
+
     $("#pShow").addEventListener("click", () => {
       const b = brandSel.value;
       state.brand = PRODUCTS.some((p) => p.brand === b) ? b : "all";
-      state.model = state.brand === "all" ? "" : modelSel.value;
+      state.model = state.brand === "all" || modelSel.value === OTHER ? "" : modelSel.value;
       state.query = $("#pPart").value.trim();
       $("#searchInput").value = state.query;
       renderBrandChips();
@@ -152,9 +188,17 @@
     $("#picker").addEventListener("submit", (e) => {
       e.preventDefault();
       const vin = $("#pVin").value.trim().toUpperCase();
+      const brand = brandSel.value === OTHER ? brandOther.value.trim() : brandSel.value;
+      const model = (brandSel.value === OTHER || modelSel.value === OTHER) ? modelOther.value.trim() : modelSel.value;
+      if (!brand || !model) {
+        const bad = !brand ? brandOther : modelOther;
+        bad.closest("label").classList.add("is-error");
+        bad.focus();
+        return;
+      }
       const msg = [
         "Здравствуйте! Хочу подобрать запчасть.",
-        "Авто: " + brandSel.value + " " + modelSel.value,
+        "Авто: " + brand + " " + model,
         vin ? "VIN: " + vin : "",
         $("#pPart").value.trim() ? "Нужно: " + $("#pPart").value.trim() : ""
       ].filter(Boolean).join("\n");

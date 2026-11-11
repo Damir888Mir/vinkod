@@ -37,7 +37,13 @@ button,input,select{font:inherit;color:inherit}
 .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
 .header__inner{display:flex;align-items:center;gap:24px;min-height:74px}
 .logo{display:flex;align-items:center;gap:10px;color:var(--ink);flex-shrink:0}
-.logo__mark{width:42px;height:42px}
+.logo__img{height:62px;width:auto;display:block}
+.logo--footer .logo__img{height:80px}
+.field[hidden]{display:none}
+.field--other{border-color:rgba(61,220,132,.45)}
+.field--other .field__num{font-size:16px}
+.field.is-error{border-color:#ff6b6b;box-shadow:0 0 0 3px rgba(255,107,107,.2)}
+.brand--other{border-style:dashed;color:#11a35a}
 .logo__text{font-family:"Unbounded",sans-serif;font-weight:800;font-size:22px;letter-spacing:.02em;line-height:1;display:flex;flex-direction:column}
 .logo__text b{color:var(--accent);font-weight:800;display:inline}
 .logo__text small{font-family:"Manrope";font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-top:4px;text-transform:uppercase}
@@ -283,6 +289,7 @@ button,input,select{font:inherit;color:inherit}
   .topbar__center{display:none}
 }
 @media (max-width:720px){
+  .logo__img{height:48px}
   .container{padding:0 16px}
   .header__inner{flex-wrap:wrap;gap:12px;padding:10px 0;min-height:auto}
   .search{order:3;flex-basis:100%;max-width:none}

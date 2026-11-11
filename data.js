@@ -14,18 +14,21 @@ window.VK_CONTACT = {
 };
 
 window.VK_BRANDS = {
-  "Li Auto (Lixiang)": ["L6", "L7", "L8", "L9", "Mega", "One"],
-  "Zeekr": ["001", "007", "009", "7X", "X"],
-  "BYD": ["Song Plus", "Han", "Tang", "Seal", "Qin Plus", "Atto 3", "Dolphin", "Yuan Up"],
+  "Li Auto (Lixiang)": ["L6", "L7", "L8", "L9", "One"],
+  "Zeekr": ["001", "007", "009", "X", "8X", "9X"],
+  "BYD": ["Song Plus", "Han", "Tang", "Seal", "Qin Plus", "Yuan Up"],
   "Voyah": ["Free", "Dreamer", "Passion", "Courage"],
-  "Leopard (Fangchengbao)": ["Leopard 5", "Leopard 8", "Bao 3"],
-  "Deepal": ["S7", "SL03", "G318"],
-  "Honda": ["e:NS1", "e:NP1", "M-NV", "Другая"],
-  "Tesla": ["Model 3", "Model Y", "Model S", "Model X"],
-  "Aito / Huawei": ["M5", "M7", "M9"],
-  "Volkswagen": ["ID.4", "ID.6", "ID.3"],
-  "Другая марка": ["Укажу в запросе"]
+  "Leopard": ["Leopard 3", "Leopard 5", "Leopard 8"],
+  "Changan Deepal": ["S07", "S09", "SL03", "G318"],
+  "Honda": ["e:NS1", "e:NP1", "M-NV"],
+  "Tesla": ["Model Y", "Model S", "Model X"],
+  "Aito": ["M5", "M7", "M9"],
+  "Volkswagen": ["ID.4", "ID.6", "ID.3"]
 };
+
+/* Пункт «Другая» добавляется автоматически в конец списка марок
+   и в конец списка моделей каждой марки (см. script.js). */
+window.VK_OTHER = "Другая";
 
 window.VK_CATEGORIES = [
   { id: "to",     name: "Техобслуживание", icon: "🛠", img: "images/cat-to.jpg" },
@@ -51,5 +54,5 @@ window.VK_PRODUCTS = [
   { id: "p9",  name: "Амортизатор передний Voyah Free",                               brand: "Voyah",             models: ["Free"],         cat: "susp",     price: null,  stock: "order", img: "" },
   { id: "p10", name: "Зарядное устройство Type 2 / GB/T переходник",                  brand: "Универсальное",     models: [],               cat: "charge",   price: null,  stock: "in",    img: "" },
   { id: "p11", name: "Защитная плёнка для экрана Zeekr 001",                          brand: "Zeekr",             models: ["001"],          cat: "acc",      price: null,  stock: "in",    img: "" },
-  { id: "p12", name: "Датчик парковки Deepal S7",                                     brand: "Deepal",            models: ["S7"],           cat: "elec",     price: null,  stock: "order", img: "" }
+  { id: "p12", name: "Датчик парковки Changan Deepal S07", brand: "Changan Deepal", models: ["S07"],           cat: "elec",     price: null,  stock: "order", img: "" }
 ];

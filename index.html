@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vinкод — запчасти и аксессуары для электромобилей в Алматы</title>
-  <meta name="description" content="Vinкод — магазин автозапчастей и аксессуаров для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Deepal, Honda и других электрокаров и гибридов. Алматы, ул. Хмельницкого 38. Доставка по РК и СНГ.">
+  <meta name="description" content="Vinкод — магазин автозапчастей и аксессуаров для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Changan Deepal, Honda и других электрокаров и гибридов. Алматы, ул. Хмельницкого 38. Доставка по РК и СНГ.">
   <meta property="og:title" content="Vinкод — запчасти для электромобилей в Алматы">
   <meta property="og:description" content="Оригинальные запчасти и аксессуары для Lixiang, Zeekr, BYD, Voyah и других электрокаров. В наличии и под заказ из Китая.">
   <meta name="theme-color" content="#0b0f0d">
@@ -35,17 +35,11 @@
 <header class="header" id="top">
   <div class="container header__inner">
     <a href="#top" class="logo" aria-label="Vinкод — на главную">
-      <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true">
-        <path d="M24 2 43 13v22L24 46 5 35V13z" fill="none" stroke="currentColor" stroke-width="3"/>
-        <path d="M13 27c1-5 4-8 11-8s10 3 11 8" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="17" cy="30" r="3" fill="var(--accent)"/><circle cx="31" cy="30" r="3" fill="var(--accent)"/>
-        <path d="M25 9l-5 9h5l-2 7 7-10h-5l2-6z" fill="var(--accent)"/>
-      </svg>
-      <span class="logo__text"><span>VIN<b>КОД</b></span><small>auto parts</small></span>
+      <img class="logo__img" src="images/logo.png" alt="Vinкод auto parts" width="543" height="252">
     </a>
 
     <form class="search" id="searchForm" role="search">
-      <input type="search" id="searchInput" placeholder="Поиск по названию, марке или VIN…" aria-label="Поиск запчастей">
+      <input type="search" id="searchInput" placeholder="Поиск по названию или марке…" aria-label="Поиск запчастей">
       <button type="submit" aria-label="Найти">
         <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
@@ -92,7 +86,7 @@
     <div class="hero__text">
       <span class="badge">⚡ Запчасти для электромобилей и гибридов</span>
       <h1>Подберём запчасть<br>для вашего <span class="grad">электрокара</span></h1>
-      <p class="hero__lead">Оригинальные запчасти и аксессуары для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Deepal, Honda и других. Большинство — в наличии на складе в Алматы, остальное привезём из Китая.</p>
+      <p class="hero__lead">Оригинальные запчасти и аксессуары для Li Auto (Lixiang), Zeekr, BYD, Voyah, Leopard, Changan Deepal, Honda и других. Большинство — в наличии на складе в Алматы, остальное привезём из Китая.</p>
       <ul class="hero__facts">
         <li><b>4.9 ★</b><span>рейтинг в 2ГИС</span></li>
         <li><b>8–25 дн.</b><span>доставка под заказ</span></li>
@@ -111,11 +105,19 @@
           <option value="">Марка автомобиля</option>
         </select>
       </label>
+      <label class="field field--other" id="pBrandOtherWrap" hidden>
+        <span class="field__num">✎</span>
+        <input id="pBrandOther" type="text" maxlength="60" placeholder="Напишите марку автомобиля">
+      </label>
       <label class="field">
         <span class="field__num">2</span>
         <select id="pModel" required disabled>
           <option value="">Модель</option>
         </select>
+      </label>
+      <label class="field field--other" id="pModelOtherWrap" hidden>
+        <span class="field__num">✎</span>
+        <input id="pModelOther" type="text" maxlength="60" placeholder="Напишите вашу модель">
       </label>
       <label class="field">
         <span class="field__num">3</span>
@@ -374,8 +376,8 @@
 <footer class="footer">
   <div class="container footer__grid">
     <div>
-      <a href="#top" class="logo logo--footer"><span class="logo__text"><span>VIN<b>КОД</b></span><small>auto parts</small></span></a>
-      <p class="muted">Магазин автозапчастей и аксессуаров для Lixiang, Zeekr, BYD, Honda, Voyah, Leopard, Deepal и других электрокаров и гибридов.</p>
+      <a href="#top" class="logo logo--footer"><img class="logo__img" src="images/logo-white.png" alt="Vinкод auto parts" width="543" height="252" loading="lazy"></a>
+      <p class="muted">Магазин автозапчастей и аксессуаров для Lixiang, Zeekr, BYD, Honda, Voyah, Leopard, Changan Deepal и других электрокаров и гибридов.</p>
     </div>
     <div>
       <h4>Покупателям</h4>
